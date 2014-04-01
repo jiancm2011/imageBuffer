@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <title>serial-type-test</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+<div id="progress"></div>
+<script type="text/javascript" src="lib/imageBuffer.js"></script>
+<script type="text/javascript">
+    (function (window, document) {
+        var progress = document.getElementById('progress');
+
+        imageBuffer({
+            type: 'serial',
+            resource: [
+                'http://dummyimage.com/600x400/000/fff',
+                'http://dummyimage.com/600x400/000/f1f1f1',
+                'http://dummyimage.com/600x400/000/f2f2f2',
+                'http://dummyimage.com/600x400/000/f3f3f3',
+                'http://dummyimage.com/600x400/000/f4f4f4',
+                'http://dummyimage.com/600x400/000/f5f5f5',
+                'http://dummyimage.com/600x400/000/f6f6f6',
+                'http://dummyimage.com/600x400/000/f7f7f7',
+                'http://dummyimage.com/600x400/000/f8f8f8',
+                'http://dummyimage.com/600x400/000/f9f9f9',
+                'http://dummyimage.com/600x400/000/fafafa',
+                'http://dummyimage.com/600x400/000/fbfbfb',
+                'http://dummyimage.com/600x400/000/fcfcfc',
+                'http://dummyimage.com/600x400/000/fdfdfd',
+                'http://dummyimage.com/600x400/000/fefefe'
+            ],
+            load: function (e) {
+                console.log('load: ', e, Date.now());
+                progress.innerHTML = e.loaded + '/' + e.total;
+            },
+            complete: function (e) {
+                console.log('complete: ', this);
+                progress.innerHTML += '(complete)';
+
+                imageBuffer({
+                    type: 'serial',
+                    resource: [
+                        'http://dummyimage.com/600x400/000/321',
+                        'http://dummyimage.com/600x400/000/123',
+                        'http://dummyimage.com/adasd/600x400/000/322'
+                    ],
+                    load: function (e) {
+                        console.log('load: ', e, Date.now());
+                    },
+                    complete: function (e) {
+                        console.log('complete: ', this);
+                    }
+                });
+            }
+        });
+
+
+    })(window, document);
+</script>
+</body>
+</html>
