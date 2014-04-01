@@ -1,4 +1,4 @@
-# imageBuffer.js 是一个Web前端的图片预存（缓存）工具
+# imageBuffer.js - Web前端图片缓存工具
 =========
 Version: 1.0.0
 Author:  Maple Jan
